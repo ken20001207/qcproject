@@ -73,6 +73,9 @@
 </template>
 
 <script>
+
+const backendURL = "http://localhost:3000";
+
 export default {
   name: "comp",
   data() {
@@ -137,18 +140,10 @@ export default {
           }
         })
         .then(function(response) {
-          let newfile = response.data;
           if (self.ft == "text") {
-            let reader = new FileReader();
-            reader.readAsText(newfile, "UTF-8");
-            reader.onload = evt => {
-              self.newtext = evt.target.result;
-            };
-            reader.onerror = evt => {
-              alert(evt);
-            };
+            self.newtext = response.data.text;
           } else if (self.ft == "img") {
-            self.newimgsrc = URL.createObjectURL(response);
+            self.newimgsrc = backendURL + "/" + response.data.filename;
           }
         })
         .catch(function(error) {
