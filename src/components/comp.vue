@@ -134,7 +134,7 @@ export default {
       formData.append("file", this.$refs.myFile.files[0]);
       formData.append("algorithm", this.algorithm);
       this.$axios
-        .post("http://localhost:3000/upload", formData, {
+        .post(backendURL + "/upload", formData, {
           headers: {
             "Content-Type": "multipart/form-data"
           }
